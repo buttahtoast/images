@@ -1,0 +1,11 @@
+[Unit]
+Description=Install Flatcar
+
+[Service]
+Type=oneshot
+ExecStart=/opt/install.sh
+RemainAfterExit=true
+StandardOutput=journal
+
+[Install]
+WantedBy=multi-user.target

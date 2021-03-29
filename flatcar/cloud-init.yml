@@ -1,0 +1,25 @@
+#cloud-config
+write_files:
+  - encoding: b64
+    owner: root:root
+    permissions: "0700"
+    path: /etc/systemd/system/install.service 
+    content: |
+      W1VuaXRdCkRlc2NyaXB0aW9uPUluc3RhbGwgRmxhdGNhcgoKW1NlcnZpY2VdClR5cGU9b25lc2hv
+      dApFeGVjU3RhcnQ9L29wdC9pbnN0YWxsLnNoClJlbWFpbkFmdGVyRXhpdD10cnVlClN0YW5kYXJk
+      T3V0cHV0PWpvdXJuYWwKCltJbnN0YWxsXQpXYW50ZWRCeT1tdWx0aS11c2VyLnRhcmdldAo=
+  - encoding: b64
+    owner: root:root
+    permissions: "0700"
+    path: /opt/install.sh
+    content: | 
+      IyEvYmluL3NoCm1vdW50IC1MIENJREFUQSAvbW50Cm1vdW50IC1MIGNpZGF0YSAvbW50CmlmIFsg
+      LWYgIi9tbnQvdXNlci1kYXRhIiBdOyB0aGVuCiAgY29yZW9zLWNsb3VkaW5pdCAtLWZyb20tZmls
+      ZSAvbW50L3VzZXItZGF0YSAKZmkK
+coreos:
+    units:
+      - name: install.service
+        command: start
+users:
+  - name: core
+    passwd: $6$pFoF9DW6921ZuUM8$cDDN68CeyDEobtREPw0HA8eiF2/S0ESwbFPFMxnYfVCjj/THkXOyJz5Rmf6RNoES/KciIXHIsm3l5boyX1bM9.
