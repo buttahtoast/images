@@ -7,5 +7,5 @@ You will find all available images here https://github.com/buttahtoast/images/re
 There is a serivce called `install.service` which deploys cloud-init from a cidata device with `coreos-cloudinit` binaries.
 
 ## Builds
-Our builds are public visible under https://drone.buttahtoast.ch we use a optimised runner for kvm acceleration.
+Our builds are public visible under https://drone.buttahtoast.ch/buttahtoast/images/ we use a optimised runner for kvm acceleration.
 
