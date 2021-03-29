@@ -1,7 +1,6 @@
 {
     "variables": {
         "flatcar_channel": "alpha",
-        "flatcar_version": "current",
         "iso_checksum_type": "md5sum",
         "disk_size": "40000",
         "memory": "2048M",
