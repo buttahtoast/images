@@ -22,7 +22,7 @@ write_files:
       LWYgIi9tbnQvdXNlci1kYXRhIiBdOyB0aGVuCiAgY29yZW9zLWNsb3VkaW5pdCAtLWZyb20tZmls
       ZSAvbW50L3VzZXItZGF0YSAKZmkK
   - encoding: b64
-    owner: root/root
+    owner: root:root
     permissions: "0700"
     path: /opt/bin/qemu-ga.sh
     content: | 
