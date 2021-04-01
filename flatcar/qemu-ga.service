@@ -3,7 +3,7 @@ Description=Qemu-GA (report to KVM hypervisor)
 
 [Service]
 Type=simple
-ExecStart=/opt/bin/qemu-ga
+ExecStart=/opt/bin/qemu-ga.sh
 RemainAfterExit=true
 StandardOutput=journal
 
