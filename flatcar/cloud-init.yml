@@ -13,6 +13,11 @@ write_files:
     owner: root:root
     permissions: "0700"
     path: /etc/systemd/system/qemu-ga.service
+    content: |
+      W1VuaXRdCkRlc2NyaXB0aW9uPVFlbXUtR0EgKHJlcG9ydCB0byBLVk0gaHlwZXJ2aXNvcikKCltT
+      ZXJ2aWNlXQpUeXBlPXNpbXBsZQpFeGVjU3RhcnQ9L29wdC9iaW4vcWVtdS1nYS5zaApSZW1haW5B
+      ZnRlckV4aXQ9dHJ1ZQpTdGFuZGFyZE91dHB1dD1qb3VybmFsCgpbSW5zdGFsbF0KV2FudGVkQnk9
+      bXVsdGktdXNlci50YXJnZXQK
   - encoding: b64
     owner: root:root
     permissions: "0700"
