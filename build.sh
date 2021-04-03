@@ -39,7 +39,7 @@ do
       tags=$(git tag)
       tversion=$(cat $v | jq .version | sed -e 's/\"//g')
       version=$(echo ${i%/}-${tversion})
-      if [[ ${tags[*]} =~ $version ]] 
+      if [[ " ${tags[@]} " =~ " ${version} " ]] 
       then
         echo "exists"
       else
