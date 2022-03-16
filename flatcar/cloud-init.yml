@@ -46,3 +46,5 @@ coreos:
 users:
   - name: core
     passwd: $6$pFoF9DW6921ZuUM8$cDDN68CeyDEobtREPw0HA8eiF2/S0ESwbFPFMxnYfVCjj/THkXOyJz5Rmf6RNoES/KciIXHIsm3l5boyX1bM9.
+runcmd:
+  - docker pull docker.io/danskadra/qemu-ga
