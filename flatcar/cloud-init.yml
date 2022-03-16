@@ -13,10 +13,14 @@ write_files:
     permissions: "0700"
     path: /etc/systemd/system/qemu-ga.service
     content: |
-      W1VuaXRdCkRlc2NyaXB0aW9uPVFlbXUtR0EgKHJlcG9ydCB0byBLVk0gaHlwZXJ2aXNvcikKCltT
-      ZXJ2aWNlXQpUeXBlPXNpbXBsZQpFeGVjU3RhcnQ9L29wdC9iaW4vcWVtdS1nYS5zaApSZW1haW5B
-      ZnRlckV4aXQ9dHJ1ZQpTdGFuZGFyZE91dHB1dD1qb3VybmFsCgpbSW5zdGFsbF0KV2FudGVkQnk9
-      bXVsdGktdXNlci50YXJnZXQK
+      W1VuaXRdCkRlc2NyaXB0aW9uPU15QXBwCkFmdGVyPWRvY2tlci5zZXJ2aWNlClJlcXVpcmVzPWRv
+      Y2tlci5zZXJ2aWNlCgpbU2VydmljZV0KVGltZW91dFN0YXJ0U2VjPTAKRXhlY1N0YXJ0UHJlPS0v
+      dXNyL2Jpbi9kb2NrZXIgcm0gLS1mb3JjZSBxZW11LWdhCkV4ZWNTdGFydD0vdXNyL2Jpbi9kb2Nr
+      ZXIgcnVuIC0tbmFtZSBxZW11LWdhICAgLS1wcml2aWxlZ2VkICAgLS1uZXQ9aG9zdCAgIC12IC9k
+      ZXY6L2RldiAgIC12IC9ldGMvb3MtcmVsZWFzZTovZXRjL29zLXJlbGVhc2U6cm8gIGRvY2tlci5p
+      by9kYW5za2FkcmEvcWVtdS1nYSBxZW11LWdhCkV4ZWNTdG9wPS91c3IvYmluL2RvY2tlciBzdG9w
+      IHFlbXUtZ2EKUmVzdGFydD1hbHdheXMKUmVzdGFydFNlYz01cwoKW0luc3RhbGxdCldhbnRlZEJ5
+      PW11bHRpLXVzZXIudGFyZ2V0Cgo=
   - encoding: b64
     owner: root:root
     permissions: "0700"
@@ -25,18 +29,6 @@ write_files:
       IyEvYmluL3NoCm1vdW50IC1MIENJREFUQSAvbW50Cm1vdW50IC1MIGNpZGF0YSAvbW50CmlmIFsg
       LWYgIi9tbnQvdXNlci1kYXRhIiBdOyB0aGVuCiAgY29yZW9zLWNsb3VkaW5pdCAtLWZyb20tZmls
       ZSAvbW50L3VzZXItZGF0YSAKZmkK
-  - encoding: b64
-    owner: root:root
-    permissions: "0700"
-    path: /opt/bin/qemu-ga.sh
-    content: | 
-      IyEvYmluL3NoCmlmIFsgISAtZiAvb3B0L2Jpbi9xZW11LWdhIF07IHRoZW4KICBjdXJsIGh0dHBz
-      Oi8vcmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbS9jaGlmdTEyMzQvcWVtdS1nYS9tYWluL3FlbXUt
-      Z2EgLW8gL29wdC9iaW4vcWVtdS1nYQpmaQpjaGVja3N1bT0iODZhYmQ2MGJmMzViZGE4YTg4Yjky
-      OTRlZDlhNGMyZmNkY2JlNDRmOGI2NTk3NTdkZTM4NTNiMGZhMjg5OTUxMCIKaWYgZWNobyAiJGNo
-      ZWNrc3VtIC9vcHQvYmluL3FlbXUtZ2EiIHwgc2hhMjU2c3VtIC1jIC0gO3RoZW4KICBjaG1vZCAr
-      eCAvb3B0L2Jpbi9xZW11LWdhCiAgL29wdC9iaW4vcWVtdS1nYSAKZWxzZQogIGVjaG8gIndyb25n
-      IGNoZWNrc3VtIgpmaQo=
 coreos:
     units:
       - name: install.service
@@ -46,3 +38,5 @@ coreos:
 users:
   - name: core
     passwd: $6$pFoF9DW6921ZuUM8$cDDN68CeyDEobtREPw0HA8eiF2/S0ESwbFPFMxnYfVCjj/THkXOyJz5Rmf6RNoES/KciIXHIsm3l5boyX1bM9.
+runcmd:
+  - docker pull docker.io/danskadra/qemu-ga
