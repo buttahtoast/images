@@ -47,6 +47,7 @@ do
         PACKER_LOG=1 packer build -var-file $v ${i}${i%/}.json
         gzip ./tmp/${version}.qcow2
         mv ./tmp/${version}.qcow2.gz ${build_dir}
+        mv ./tmp/${version}.qcow2 ${build_dir}
         rm ./tmp -rf
         text="new version for ${i%/} in version ${tversion}"
         release_id=$(curl -X POST -H "Accept: application/vnd.github.v3+json" --data "$(post_data)" "https://api.github.com/repos/$repo_full_name/releases?access_token=$token" | jq .id)
