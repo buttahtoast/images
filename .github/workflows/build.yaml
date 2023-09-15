@@ -12,11 +12,8 @@ jobs:
         with:
           fetch-depth: 0
       -
-        name: Set up QEMU
-        uses: docker/setup-qemu-action@v3
-      -
-        name: install deps
-        run: sudo apt update && sudo apt install -y cpu-checker genisoimage qemu-kvm qemu-system-x86 gzip jq qemu-utils qemu-kvm qemu && sudo modprobe kvm 
+        name: install deps & prepair qemu
+        run: sudo apt update && sudo apt install -y genisoimage qemu-system-x86 gzip jq qemu-utils qemu
       -
         name: run ./build.sh
         run: ./build.sh

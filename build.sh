@@ -45,7 +45,8 @@ do
       else
         [ -d "${i}/cloud-init" ] && genisoimage -output ${i}/cloud-init/seed.img  -volid cidata -joliet -rock ${i}/cloud-init/user-data ${i}/cloud-init/meta-data
         new_release+=("$i-$v")
-        sudo PACKER_LOG=1 packer build -var-file $v ${i}${i%/}.json
+        sudo packer init ${i}${i%/}.json.pkr.hcl
+        sudo PACKER_LOG=1 packer build -var-file $v ${i}${i%/}.json.pkr.hcl
         gzip ./tmp/${version}.qcow2
         mv ./tmp/${version}.qcow2.gz ${build_dir}
         mv ./tmp/${version}.qcow2 ${build_dir}
