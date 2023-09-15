@@ -13,7 +13,7 @@
             "format": "qcow2",
             "ssh_username": "packer",
             "ssh_password": "packer",
-            "accelerator": "kvm",
+            "accelerator": "none",
             "vm_name": "debian-{{ user `version` }} {{ user `build_version` }}.qcow2",
             "boot_wait": "1s",
             "headless": true,
@@ -32,7 +32,8 @@
             "inline": [
                 "sudo apt update && sudo apt -y install open-iscsi",
                 "sudo apt install qemu-guest-agent -y && sudo systemctl enable qemu-guest-agent",
-                "sudo dhclient -r && sudo rm /etc/udev/rules.d/*",
+                "tree /etc/udev/",
+                "sudo dhclient -r",
                 "echo 'reset cloud-init' && sudo cloud-init clean  &&  sudo rm /etc/machine-id"
             ]
         }
