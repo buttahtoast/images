@@ -32,7 +32,7 @@
             "inline": [
                 "sudo apt update && sudo apt -y install open-iscsi",
                 "sudo apt install qemu-guest-agent -y && sudo systemctl enable qemu-guest-agent",
-                "sudo dhclient -r && rm /etc/udev/rules.d/*",
+                "sudo dhclient -r && sudo rm /etc/udev/rules.d/*",
                 "echo 'reset cloud-init' && sudo cloud-init clean  &&  sudo rm /etc/machine-id"
             ]
         }
