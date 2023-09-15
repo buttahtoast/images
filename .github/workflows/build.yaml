@@ -16,7 +16,7 @@ jobs:
         uses: docker/setup-qemu-action@v3
       -
         name: install deps
-        run: sudo apt update && sudo apt install -y genisoimage qemu-kvm qemu-system-x86 gzip jq qemu-utils
+        run: sudo apt update && sudo apt install -y genisoimage qemu-kvm qemu-system-x86 gzip jq qemu-utils && sudo modprobe kvm && sudo modprobe kvm_intel
       -
         name: run ./build.sh
         run: ./build.sh
