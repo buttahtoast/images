@@ -1,0 +1,11 @@
+#cloud-config
+preserve_hostname: false
+hostname: packerubuntu
+users:
+- name: packer
+  sudo: ['ALL=(ALL) NOPASSWD:ALL']
+ssh_pwauth: True
+chpasswd:
+  list: |
+    packer:packer
+  expire: False

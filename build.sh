@@ -43,8 +43,9 @@ do
       then
         echo "exists"
       else
+        [ -d "${i}/cloud-init" ] && genisoimage -output ${i}/cloud-init/seed.img  -volid cidata -joliet -rock ${i}/cloud-init/user-data ${i}/cloud-init/meta-data
         new_release+=("$i-$v")
-        PACKER_LOG=1 packer build -var-file $v ${i}${i%/}.json
+        sudo PACKER_LOG=1 packer build -var-file $v ${i}${i%/}.json
         gzip ./tmp/${version}.qcow2
         mv ./tmp/${version}.qcow2.gz ${build_dir}
         mv ./tmp/${version}.qcow2 ${build_dir}
@@ -52,6 +53,7 @@ do
         text="new version for ${i%/} in version ${tversion}"
         release_id=$(curl -X POST -H "Accept: application/vnd.github.v3+json" --data "$(post_data)" "https://api.github.com/repos/$repo_full_name/releases?access_token=$token" | jq .id)
         curl --data-binary @${build_dir}/${version}.qcow2.gz -H  "Content-Type: application/octet-stream" "https://uploads.github.com/repos/$repo_full_name/releases/$release_id/assets?name=${version}.qcow2.gz&access_token=$token"
+        rm -rf @${build_dir}/
       git fetch --all --tags
       fi
   done
