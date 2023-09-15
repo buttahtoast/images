@@ -43,7 +43,7 @@ variable "version_name" {
 
 variable "accelerator" {
   type = string
-  default = "nonde"
+  default = "none"
 }
 
 # source blocks are generated from your builders; a source can be referenced in
