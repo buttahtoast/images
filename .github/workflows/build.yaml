@@ -16,7 +16,7 @@ jobs:
         uses: docker/setup-qemu-action@v3
       -
         name: install deps
-        run: apt update && apt install -y genisoimage
+        run: sudo apt update && sudo apt install -y genisoimage
       -
         name: run ./build.sh
         run: ./build.sh
