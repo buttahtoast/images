@@ -7,7 +7,7 @@ jobs:
   qemu:
     runs-on:
       group: ubuntu-runners
-      labels: ubuntu-20.04-16core
+      labels: ubuntu-22.04-16core
     steps:
       - 
         uses: actions/checkout@v4
