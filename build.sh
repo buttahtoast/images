@@ -52,9 +52,8 @@ do
         sudo chmod 777 ${build_dir}/* 
         rm ./tmp -rf
         text="new version for ${i%/} in version ${tversion}"
-        curl -v -X POST -H "Accept: application/vnd.github.v3+json" --data "$(post_data)" "https://api.github.com/repos/$repo_full_name/releases?access_token=$token"
-        release_id=$(curl -X POST -H "Accept: application/vnd.github.v3+json" --data "$(post_data)" "https://api.github.com/repos/$repo_full_name/releases?access_token=$token" | jq .id)
-        curl --data-binary @${build_dir}/${version}.qcow2.gz -H  "Content-Type: application/octet-stream" "https://uploads.github.com/repos/$repo_full_name/releases/$release_id/assets?name=${version}.qcow2.gz&access_token=$token"
+        release_id=$(curl -X POST -H "Authorization: Bearer $token" -H "X-GitHub-Api-Version: 2022-11-28" -H "Accept: application/vnd.github+json" --data "$(post_data)" "https://api.github.com/repos/$repo_full_name/releases" | jq .id)
+        curl --data-binary @${build_dir}/${version}.qcow2.gz -H "Authorization: Bearer $token" -H  "Content-Type: application/octet-stream" "https://uploads.github.com/repos/$repo_full_name/releases/$release_id/assets?name=${version}.qcow2.gz&access_token=$token"
         sudo rm -rf @${build_dir}/
       git fetch --all --tags
       fi
