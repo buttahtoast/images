@@ -47,14 +47,15 @@ do
         new_release+=("$i-$v")
         sudo packer init ${i}${i%/}.json.pkr.hcl
         sudo PACKER_LOG=1 packer build -var-file $v ${i}${i%/}.json.pkr.hcl
-        gzip ./tmp/${version}.qcow2
-        mv ./tmp/${version}.qcow2.gz ${build_dir}
-        mv ./tmp/${version}.qcow2 ${build_dir}
+        sudo gzip ./tmp/${version}.qcow2
+        sudo mv ./tmp/${version}.qcow2.gz ${build_dir}
+        sudo mv ./tmp/${version}.qcow2 ${build_dir}
+        sudo chmod 777 ${build_dir}/* 
         rm ./tmp -rf
         text="new version for ${i%/} in version ${tversion}"
         release_id=$(curl -X POST -H "Accept: application/vnd.github.v3+json" --data "$(post_data)" "https://api.github.com/repos/$repo_full_name/releases?access_token=$token" | jq .id)
         curl --data-binary @${build_dir}/${version}.qcow2.gz -H  "Content-Type: application/octet-stream" "https://uploads.github.com/repos/$repo_full_name/releases/$release_id/assets?name=${version}.qcow2.gz&access_token=$token"
-        rm -rf @${build_dir}/
+        sudo rm -rf @${build_dir}/
       git fetch --all --tags
       fi
   done
