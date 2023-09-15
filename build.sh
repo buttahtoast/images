@@ -49,7 +49,6 @@ do
         sudo PACKER_LOG=1 packer build -var-file $v ${i}${i%/}.json.pkr.hcl
         sudo gzip ./tmp/${version}.qcow2
         sudo mv ./tmp/${version}.qcow2.gz ${build_dir}
-        sudo mv ./tmp/${version}.qcow2 ${build_dir}
         sudo chmod 777 ${build_dir}/* 
         rm ./tmp -rf
         text="new version for ${i%/} in version ${tversion}"
