@@ -8,7 +8,7 @@
       	    "iso_url": "https://cloud.debian.org/images/cloud/{{ user `version_name` }}/{{ user `build_version` }}/debian-{{ user `version` }}-genericcloud-amd64-{{ user `build_version` }}.qcow2",
             "iso_checksum": "{{ user `iso_checksum` }}",
             "output_directory": "tmp",
-            "shutdown_command": "sudo sh -c 'userdel packer && shutdown now'",
+            "shutdown_command": "sudo sh -c 'userdel -f packer && shutdown now'",
             "disk_size": "10000",
             "format": "qcow2",
             "ssh_username": "packer",
