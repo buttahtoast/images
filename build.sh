@@ -49,6 +49,7 @@ do
         sudo gzip ./tmp/${version}.qcow2
         sudo mv ./tmp/${version}.qcow2.gz ${build_dir}
         sudo chmod 777 ${build_dir}/* 
+        sudo rm -rf ./tmp/
       git fetch --all --tags
       fi
   done
