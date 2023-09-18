@@ -53,8 +53,8 @@ do
         rm ./tmp -rf
         text="new version for ${i%/} in version ${tversion}"
         release_id=$(curl -X POST -H "Authorization: Bearer $token" -H "X-GitHub-Api-Version: 2022-11-28" -H "Accept: application/vnd.github+json" --data "$(post_data)" "https://api.github.com/repos/$repo_full_name/releases" | jq .id)
-        curl --data-binary @${build_dir}/${version}.qcow2.gz -H "Authorization: Bearer $token" -H  "Content-Type: application/octet-stream" "https://uploads.github.com/repos/$repo_full_name/releases/$release_id/assets?name=${version}.qcow2.gz&access_token=$token"
-        sudo rm -rf @${build_dir}/
+        #curl --data-binary @${build_dir}/${version}.qcow2.gz -H "Authorization: Bearer $token" -H  "Content-Type: application/octet-stream" "https://uploads.github.com/repos/$repo_full_name/releases/$release_id/assets?name=${version}.qcow2.gz&access_token=$token"
+        #sudo rm -rf @${build_dir}/
       git fetch --all --tags
       fi
   done

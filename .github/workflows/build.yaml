@@ -2,6 +2,8 @@ name: ci
 
 on:
   push:
+    tags:
+      - "v*"
 
 jobs:
   qemu:
@@ -17,3 +19,9 @@ jobs:
       -
         name: run ./build.sh
         run: ./build.sh
+      - uses: "marvinpinto/action-automatic-releases@latest"
+        with:
+          repo_token: "${{ secrets.TOKEN }}"
+          prerelease: false
+          files: |
+            ./build/*.gz
