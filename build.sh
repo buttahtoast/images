@@ -44,17 +44,11 @@ do
         echo "exists"
       else
         [ -d "${i}/cloud-init" ] && genisoimage -output ${i}/cloud-init/seed.img  -volid cidata -joliet -rock ${i}/cloud-init/user-data ${i}/cloud-init/meta-data
-        new_release+=("$i-$v")
         sudo packer init ${i}${i%/}.json.pkr.hcl
         sudo PACKER_LOG=1 packer build -var-file $v ${i}${i%/}.json.pkr.hcl
         sudo gzip ./tmp/${version}.qcow2
         sudo mv ./tmp/${version}.qcow2.gz ${build_dir}
         sudo chmod 777 ${build_dir}/* 
-        rm ./tmp -rf
-        text="new version for ${i%/} in version ${tversion}"
-        release_id=$(curl -X POST -H "Authorization: Bearer $token" -H "X-GitHub-Api-Version: 2022-11-28" -H "Accept: application/vnd.github+json" --data "$(post_data)" "https://api.github.com/repos/$repo_full_name/releases" | jq .id)
-        #curl --data-binary @${build_dir}/${version}.qcow2.gz -H "Authorization: Bearer $token" -H  "Content-Type: application/octet-stream" "https://uploads.github.com/repos/$repo_full_name/releases/$release_id/assets?name=${version}.qcow2.gz&access_token=$token"
-        #sudo rm -rf @${build_dir}/
       git fetch --all --tags
       fi
   done
