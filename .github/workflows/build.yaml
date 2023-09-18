@@ -16,18 +16,11 @@ jobs:
       -
         name: install deps & prepair qemu
         run: sudo apt update && sudo apt install -y genisoimage qemu-system-x86 gzip jq qemu-utils qemu
-      - name: Extract tag name
-        id: tag
-        uses: actions/github-script@0.2.0
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          script: |
-            return context.payload.ref.replace(/\/refs\/tags\//, '');
       -
         name: run ./build.sh
         run: ./build.sh
         env:
-          TAG: ${{ steps.tag.outputs.result }}
+          TAG: ${{github.ref_name}} 
       - uses: "marvinpinto/action-automatic-releases@latest"
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
