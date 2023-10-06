@@ -46,8 +46,8 @@ do
         [ -d "${i}/cloud-init" ] && genisoimage -output ${i}/cloud-init/seed.img  -volid cidata -joliet -rock ${i}/cloud-init/user-data ${i}/cloud-init/meta-data
         sudo packer init ${i}${i%/}.json.pkr.hcl
         sudo PACKER_LOG=1 packer build -var-file $v ${i}${i%/}.json.pkr.hcl
-        sudo gzip ./tmp/${version}.qcow2
-        sudo mv ./tmp/${version}.qcow2.gz ${build_dir}/${TAG}-${version}.qcow2.gz 
+        # sudo gzip ./tmp/${version}.qcow2
+        sudo mv ./tmp/${version}.qcow2 ${build_dir}/${TAG}-${version}.qcow2 
         sudo chmod 777 ${build_dir}/* 
         sudo rm -rf ./tmp/
       git fetch --all --tags
